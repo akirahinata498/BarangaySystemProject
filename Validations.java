@@ -89,7 +89,7 @@ public class Validations {
 		String day = "";
 		String year = "";
 		while (isRunning) {
-			System.out.println("Enter the month of your birthday E.G 1 for january");
+			System.out.print("Enter the month of your birthday E.G 1 for january: ");
 
 			try {
 			byte monthchoose = scan.nextByte();
@@ -112,7 +112,7 @@ public class Validations {
 				continue;
 				}
 			}
-			System.out.println("Please choose the day of your birth");
+			System.out.print("Enter the date of your birth: ");
 			byte dayscan = scan.nextByte();
 			 day = "";
 			if (dayscan <= 0 || dayscan > 31) {
@@ -122,7 +122,7 @@ public class Validations {
 			else {
 				day = Integer.toString(dayscan);
 			}
-			System.out.println("Please enter your birth year");
+			System.out.print("Enter the year of your Birth: ");
 			int yearscan = scan.nextInt();
 			 year = "";
 			if (yearscan < 1950 || yearscan > 2007) {
@@ -148,10 +148,10 @@ public class Validations {
 		boolean isRunning = true;
 		String password = "";
 		while (isRunning) {
-			System.out.println("Enter your password: ");
+			System.out.print("Enter your password: ");
 			password = scan.nextLine();
-			if (!password.matches("[a-zA-Z0-9]+@[0-9]+")) {
-				System.out.println("Please enter a proper password format");
+			if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$")) {
+				System.out.println("Please enter a proper password format must have \n Minimum 8 characters, at least 1 uppercase, 1 lowercase, 1 digit");
 			}
 			else {
 				isRunning = false;
@@ -163,7 +163,7 @@ public class Validations {
 		boolean isRunning = true;
 		String email = "";
 		while (isRunning) {
-			System.out.println("Enter your email: ");
+			System.out.print("Enter your email: ");
 			email = scan.nextLine();
 			if (!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+mail\\.com$")) {
 				System.out.println("Please enter a proper email format");

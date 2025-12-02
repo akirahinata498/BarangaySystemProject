@@ -13,9 +13,9 @@ public class UsersManager {
 
     public void loginUser(Scanner scan) {
         scan.nextLine();
-        boolean isRunning = true; 
+       
         boolean isLogin = false;
-        while (isRunning) {
+    
         System.out.println("=== Login ===");
         System.out.print("Enter your Username: ");
         String username = scan.nextLine();
@@ -23,14 +23,9 @@ public class UsersManager {
         String password = hashPassword(scan.nextLine());
         
         for (Users users : getAllUsers()) {
-              System.out.println("The length are " + getAllUsers().size());
-            System.out.println("The map one are "  + users.getUsername());
-            System.out.println("The input username are " + username);
-            System.out.println("The map one for password are " + users.getPassword());
-            System.out.println("The input password are " + password);
             if (username.equals(users.getUsername()) && password.equals(users.getPassword())) {
                 System.out.println("Login Success");
-                isRunning = false;
+                
                 System.out.println("The role are " + users.getRole());
                 if (users.getRole().equals("Resident")) {
                 ResidentMenu residentMenu = new ResidentMenu();
@@ -50,7 +45,7 @@ public class UsersManager {
                 System.out.println("Login Failed, Please try again");
             }
 
-        }
+        
     } 
     public void addUser(Users userRegister) {
         usersData.add(userRegister);
@@ -69,7 +64,6 @@ public class UsersManager {
     public void editProfile(Scanner scan, String role, Users userPassed) {
         scan.nextLine();
         boolean isRunning = true;
-        System.out.println("The role are " + role);
         // chooseUserInfo(scan, role)
         Users userEdit = userPassed;
         if (userEdit == null) {

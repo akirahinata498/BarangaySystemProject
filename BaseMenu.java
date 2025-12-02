@@ -10,12 +10,6 @@ public abstract class BaseMenu implements Menu {
             displayMenu();
             running = chooseMenu(scan);   // chooseMenu controls when loop ends
         }
-        try {
-            System.out.println("Exiting Program...");
-            Thread.sleep(2000);
-            System.out.println("Program Terminated.");
-        }catch(InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 }
