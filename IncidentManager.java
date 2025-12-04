@@ -39,7 +39,7 @@ public class IncidentManager {
             System.out.println("No incident records.");
             return;
         }
-        System.out.println("\n======== ALL INCIDENT REPORT ========");
+        System.out.println("\n======== ALL Archieved REPORT ========");
         for (IncidentReport report : archieveStorage.getAllArchieveIncidents()) {
            System.out.println(report);
         }
@@ -167,10 +167,10 @@ public class IncidentManager {
             switch (choose) {
                 case 1 -> displayAllCurrentIncidentReports();
                 case 2 -> searchIncidentsByReporter(scan, "CurrentIncident");
-                case 3 -> searchIncidentById(scan, "CurrentIncident");
+                case 3 -> System.out.println(searchIncidentById(scan, "CurrentIncident"));
                 case 4 -> displayAllArchieveReports();
                 case 5 -> searchIncidentsByReporter(scan, "ArchievedIncident");
-                case 6 -> searchIncidentById(scan, "ArchievedIncident");
+                case 6 -> System.out.println(searchIncidentById(scan, "ArchievedIncident")); 
                 case 7 -> updateCaseStatus(scan);
                 case 8 -> arhieveReports(scan);
                 case 9 -> isRunning = false;

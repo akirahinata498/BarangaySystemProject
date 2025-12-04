@@ -52,7 +52,7 @@ public class UsersManager {
     }
 
     public void deleteProfile(Scanner scan, String role) {
-        scan.nextLine();
+        // scan.nextLine();
         Users userDelete = chooseUserInfo(scan, role);
         if (userDelete == null) {
             System.out.println("User does not exist");
@@ -62,7 +62,7 @@ public class UsersManager {
     }
 
     public void editProfile(Scanner scan, String role, Users userPassed) {
-        scan.nextLine();
+        // scan.nextLine();
         boolean isRunning = true;
         // chooseUserInfo(scan, role)
         Users userEdit = userPassed;
@@ -80,9 +80,8 @@ public class UsersManager {
             System.out.println("4 - Edit District");
             if (userEdit instanceof Residents) {
             System.out.println("5 - Edit Complete Address");
-            System.out.println("6 - Edit Age");
-            System.out.println("7 - Edit First Name");
-            System.out.println("8 - Edit Middle Name");
+            System.out.println("6 - Edit First Name");
+            System.out.println("7 - Edit Middle Name");
             System.out.println("8 - Edit Last Name");
             System.out.println("9 - Edit Contact Number");
             System.out.println("10 - Edit Civil Status");
@@ -93,12 +92,12 @@ public class UsersManager {
             scan.nextLine();
             switch (choose) {
                 case 1 :
-                    System.out.print("Edit your Username");
+                    System.out.print("Edit your Username: ");
                     userEdit.setUsername(scan.nextLine());
                     System.out.println("Username is edited");
                     break;
                 case 2 :
-                    System.out.print("Edit your Password");
+                    System.out.print("Edit your Password: ");
                     userEdit.setUsername(validation.validatePassword(scan));
                     System.out.println("Password is edited");
                     break;
@@ -116,58 +115,42 @@ public class UsersManager {
                     isRunning = false;
                     break;
             }
-               if (choose >= 1 && choose <= 4) break;
-            if (userEdit instanceof Residents resident && (choose >= 5 && choose <= 12)) {
-                if (choose >= 1 && choose <= 12) break;
-                switch (choose) {
-                    case 5 :
-                        System.out.print("Edit your Complete Address: ");
-                        resident.setCompleteAddress(scan.nextLine());
-                        break;
-                    case 6 : 
-                        System.out.print("Edit your Age: ");
-                        resident.setAge(validation.validateAge(scan));
-                        break;
-                    case 7 :
-                        System.out.print("Edit your First Name: ");
-                        resident.setFname(scan.nextLine());
-                        break;
-                    case 8 :
-                        System.out.print("Edit your Middle Name: ");
-                        resident.setMname(scan.nextLine());
-                        break;
-                    case 9 : 
-                        System.out.print("Edit your Last Name: ");
-                        resident.setLname(scan.nextLine());
-                        break;
-                    case 10 : 
-                        System.out.print("Edit your Contact Number: ");
-                        resident.setContactNumber(validation.validateContactNumber(scan));
-                        break;
-                    case 11 :
-                        System.out.print("Edit your Civil Status: ");
-                        resident.setCivilStatus(validation.validateCivilStatus(scan));
-                        break;
-                    case 12 :
-                        System.out.print("Edit Date of Birth");
-                        resident.setDateOfBirth(validation.validateDateOfBirth(scan));
-                        break;
-                    default : 
-                    System.out.println("Invalid Input, Please try again");
-                    continue;
-                }
+               
+      if (userEdit instanceof Residents resident) {
+    if (choose >= 5 && choose <= 11) {
+        switch (choose) {
+            case 5 -> {
+                System.out.print("Edit your Complete Address: ");
+                resident.setCompleteAddress(scan.nextLine());
             }
-            
-            else if (choose >= 1 && choose <= 4) {
-                System.out.println("Invalid Input, Please choose only from the choices given");
-                continue;
+            case 6 -> {
+                System.out.print("Edit your First Name: ");
+                resident.setFname(scan.nextLine());
             }
+            case 7 -> {
+                System.out.print("Edit your Middle Name: ");
+                resident.setMname(scan.nextLine());
+            }
+            case 8 -> {
+                System.out.print("Edit your Last Name: ");
+                resident.setLname(scan.nextLine());
+            }
+            case 9 ->  resident.setContactNumber(validation.validateContactNumber(scan));
+            case 10 ->  resident.setCivilStatus(validation.validateCivilStatus(scan));
+            case 11 -> {
+                resident.setDateOfBirth(validation.validateDateOfBirth(scan));
+                resident.setAge(validation.validateAge(scan, resident.getDateOfBirth()));
+            }
+        }
+    } 
+
+}
         }
     }
 
 
             public Users chooseUserInfo(Scanner scan, String role) {
-           
+        //    scan.nextLine();
                 System.out.println("Enter the username of user that you want to manage");
                 String username = scan.nextLine();
                 for (Users users : getAllUsers()) {

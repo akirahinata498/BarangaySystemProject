@@ -79,6 +79,7 @@ public class IncidentReport {
                "Description: " + description + "\n" +
                "Reporter: " + reporterName + "\n" +
                "Reported At: " + time.format(formatter) + "\n" +
-               "Description: " + description + "\n";
+               "Description: " + description + "\n" + 
+               "Status: " + status + "\n";
     }
 }

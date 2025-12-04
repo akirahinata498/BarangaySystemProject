@@ -107,7 +107,8 @@ public class Residents extends Users{
                "Complete Address" + getCompleteAddress() + "\n" +
                "Contact Number: " + getContactNumber() + "\n" + 
                "Civil Status: " + getCivilStatus() + "\n" + 
-               "Date of Birth: " + getDateOfBirth() + "\n";
+               "Date of Birth: " + getDateOfBirth() + "\n" +
+               "Age: " + getAge() + "\n";
     }
 
 }

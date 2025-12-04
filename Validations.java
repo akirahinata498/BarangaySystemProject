@@ -1,5 +1,8 @@
 package BarangayManagementSystem;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Validations {
@@ -40,21 +43,13 @@ public class Validations {
         return contactNumber;
     }
 
-    public int validateAge(Scanner scan) {
-        int age = 0;
-        boolean isRunning = true;
-        while (isRunning) {
-         System.out.print("Enter your age: ");
-          age = scan.nextInt();
-        if (age <= 17 || age >= 150) {
-            System.out.println("Please enter a proper age: ");
-        }
-        else {
-            isRunning = false;
-        }
-        }
-        scan.nextLine();
-        return age;
+    public int validateAge(Scanner scan, String dateOfBirth) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM-d-yyyy"); 
+    LocalDate birthDate = LocalDate.parse(dateOfBirth, formatter);
+    LocalDate today = LocalDate.now();
+
+    return Period.between(birthDate, today).getYears();
+    
     }
 
     public String validateCivilStatus(Scanner scan) {

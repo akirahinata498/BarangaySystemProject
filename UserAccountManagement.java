@@ -40,6 +40,7 @@ public class UserAccountManagement {
             System.out.println("4 - View All Admin");
             System.out.println("5 - Exit");   
             int userChoice = scan.nextInt();
+            scan.nextLine();
                 switch (userChoice) {
                     case 1 -> {
                         Admin admin = new Admin();
@@ -66,6 +67,7 @@ public class UserAccountManagement {
             System.out.println("4 - View All Residents");
             System.out.println("5 - Exit");
             int userChoice = scan.nextInt();
+            scan.nextLine();
             switch (userChoice) {
                 case 1 -> {
                      Residents resident = new Residents();

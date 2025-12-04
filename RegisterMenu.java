@@ -17,6 +17,7 @@ public class RegisterMenu extends BaseMenu {
     @Override
     public boolean chooseMenu(Scanner scan) {
         int userInputs = scan.nextInt();
+        scan.nextLine();
          AdminRegister adminRegister = new AdminRegister();
         Admin admin = new Admin();
         ResidentRegister residentRegister = new ResidentRegister();

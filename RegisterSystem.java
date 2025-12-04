@@ -8,7 +8,7 @@ public abstract class RegisterSystem<T extends Users, M extends MenuValidation<T
     }
 
     public void registerUser(Scanner scan, T userRegister, String role) {
-        scan.nextLine();
+  
         System.out.print("Enter your username: ");
         userRegister.setUsername(scan.nextLine());
         userRegister.setEmail(validateEmail(scan)); 

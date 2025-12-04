@@ -34,7 +34,7 @@ public class ResidentMenu extends BaseMenu implements MenuValidation<Residents>{
         int userChoice = scan.nextInt();
         switch (userChoice) {
             case 1 -> System.out.println("=== My Profile ===\n" + userInfo);
-            case 2 -> usersManager.editProfile(scan, "Resident", usersManager.chooseUserInfo(scan, "Resident"));
+            case 2 -> usersManager.editProfile(scan, "Resident", userInfo);
             case 3 -> certificateRequest.newRequest(scan, userInfo.getFname(), userInfo.getMname(), userInfo.getLname());
             case 4 -> certificateRequest.residentViewCertificate(userInfo.getFname(), userInfo.getMname(), userInfo.getLname());
             case 5 -> userAnnouncementViewer.viewBarangayAnnouncements(scan);

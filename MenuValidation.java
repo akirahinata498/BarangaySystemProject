@@ -10,8 +10,9 @@ public interface MenuValidation<T extends Users> extends Menu {
     boolean isUserValidated();
     void setUserValidation(boolean userValidation);
     default boolean isuserLogout(Scanner scan) {
+         scan.nextLine();
         while (true) {
-            scan.nextLine();
+           
         System.out.print("Are your sure you want to logout? (Y/N): ");
         String logout = scan.nextLine();
         if (logout.equalsIgnoreCase("Y") || logout.equalsIgnoreCase("Yes")) {

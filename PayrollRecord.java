@@ -146,15 +146,13 @@ public class PayrollRecord extends FinancialRecord{
         payroll.setSSS(getGrossPay());
         payroll.setPagIbig(getGrossPay());
         double deductions = payroll.getSSS() + payroll.getPhilHealth() + payroll.getPagIbig();
-        System.out.println("The deductions are " + deductions);
+ 
         payroll.setTotalCost(grossPay - deductions);
-        System.out.println("While the total netpay are " + getTotalCost());
+
     }
 
 
     public void computeGrossPay(double dailyRate, int workingDays, PayrollRecord payroll) {
-        System.out.println("The daily rate are " + dailyRate);
-        System.out.println("The working datys are " + workingDays);
         payroll.setGrossPay(dailyRate * workingDays);
     }
     

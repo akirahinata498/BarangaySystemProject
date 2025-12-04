@@ -26,7 +26,6 @@ public class ResidentRegister extends RegisterSystem<Residents, ResidentMenu>{
               super.registerUser(scan, userRegister, role);
         System.out.print("Enter your complete address: ");
         userRegister.setCompleteAddress(scan.nextLine());
-        userRegister.setAge(validateAge(scan));
         userRegister.setGender(validateGender(scan));
         System.out.print("Enter your First Name: ");
         userRegister.setFname(scan.nextLine());
@@ -37,6 +36,7 @@ public class ResidentRegister extends RegisterSystem<Residents, ResidentMenu>{
         userRegister.setContactNumber(validateContactNumber(scan));
         userRegister.setCivilStatus(validateCivilStatus(scan));
         userRegister.setDateOfBirth(validateDateOfBirth(scan));
+         userRegister.setAge(validateAge(scan, userRegister.getDateOfBirth()));
             saveUser(userRegister);
     }
 
