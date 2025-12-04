@@ -82,12 +82,12 @@ public class PayrollRecord extends FinancialRecord{
     public void editRecord(Scanner scan)  {
           scan.nextLine();
         boolean isRunning = true;
-        while (isRunning) {
-            PayrollRecord payrollRecord = (PayrollRecord) findRecord(scan);
+                    PayrollRecord payrollRecord = (PayrollRecord) findRecord(scan);
             if (payrollRecord == null) {
                 System.out.println("Invalid Input, ID does not exist");
-                break;
+                return;
             }
+        while (isRunning) {
           System.out.println("=== Edit Payroll Record ===");
           System.out.println("1 - Transaction Date");
           System.out.println("2 - Status");
@@ -238,7 +238,8 @@ public String toString() {
            "Employee PhilHealth Contribution: " + getPhilHealth() + "\n" + 
            "Employee SSS Contribution: " + getSSS() + "\n" + 
            "Employee Pag-Ibig Contribution: " + getPagIbig() + "\n" + 
-           "Employee Net Pay: " + getTotalCost() + "\n"; 
+           "Employee Net Pay: " + getTotalCost() + "\n" + 
+           "Payroll Status: " + getStatus() + "\n"; 
 }
 
 

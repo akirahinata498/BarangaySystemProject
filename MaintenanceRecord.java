@@ -72,12 +72,13 @@ public class MaintenanceRecord extends FinancialRecord{
     public void editRecord(Scanner scan) {
         scan.nextLine();
         boolean isRunning = true;
-        while (isRunning) {
-            MaintenanceRecord maintenanceRecord = (MaintenanceRecord) findRecord(scan);
+                    MaintenanceRecord maintenanceRecord = (MaintenanceRecord) findRecord(scan);
             if (maintenanceRecord == null) {
                 System.out.println("Invalid Input, ID does not Exist");
-                break;
+                return;
             }
+        while (isRunning) {
+
             System.out.println("=== Edit Maintenance Record ===");
             System.out.println("1 - Transaction Date");
             System.out.println("2 - Status");

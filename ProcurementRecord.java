@@ -69,12 +69,13 @@ public class ProcurementRecord extends FinancialRecord{
     public void editRecord(Scanner scan) {
         scan.nextLine();
         boolean isRunning = true;
-        while (isRunning) {
-            ProcurementRecord procurementRecord = (ProcurementRecord) findRecord(scan);
+                    ProcurementRecord procurementRecord = (ProcurementRecord) findRecord(scan);
             if (procurementRecord == null) {
                 System.out.println("Invalid Input, ID does not exist.");
-                break;
+                return;
             }
+        while (isRunning) {
+
             System.out.println("=== Edit Procurement Record ===");
             System.out.println("1 - Transaction Date");
             System.out.println("2 - Status");
