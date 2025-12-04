@@ -24,7 +24,7 @@ public class MaintenanceRecord extends FinancialRecord{
     @Override
     public void addRecord(Scanner scan) {
         scan.nextLine();
-        String financeID = "MTR-" +  year + "-" + String.format("%05d", newCountedRecord());
+        String financeID = certificateNumberGeneration("MTR");
         System.out.print("Enter Maintenance Type: ");
         String maintenanceType = scan.nextLine();
         System.out.print("Enter Maintenance Description: ");

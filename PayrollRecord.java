@@ -39,7 +39,7 @@ public class PayrollRecord extends FinancialRecord{
     @Override
     public void addRecord(Scanner scan) {
         scan.nextLine();
-       String financeID = "PAY-" + year + "-" + String.format("%05d", newCountedRecord());
+       String financeID = certificateNumberGeneration("PAY");
        System.out.print("Enter Employee Name: ");
        String name = scan.nextLine();
        System.out.print("Enter Employee ID: ");

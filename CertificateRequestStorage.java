@@ -2,6 +2,7 @@ package BarangayManagementSystem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class CertificateRequestStorage {
@@ -17,11 +18,38 @@ public class CertificateRequestStorage {
 
    
     public CertificateRequest createRequest(String name,  String purpose) {
-        String requestID = "CRI-" + year + "-" + String.format("%05d", (requests.size() + 1));
+        String requestID = certificateNumberGeneration();
         CertificateRequest request = new CertificateRequest(requestID, name, purpose);
         requests.add(request);
         return request;
     }
+
+ public String certificateNumberGeneration() {
+
+    // Make a copy of the list to avoid changing the original
+    List<CertificateRequest> sorted = new ArrayList<>(getAllRequests());
+
+    // Sort by numeric part of the ID
+    sorted.sort(Comparator.comparingInt(r ->
+        Integer.parseInt(r.getId().split("-")[2])
+    ));
+
+    int idNumber = 1;
+
+    for (CertificateRequest req : sorted) {
+        int current = Integer.parseInt(req.getId().split("-")[2]);
+
+        if (current != idNumber) {
+            // Found the first missing ID
+            break;
+        }
+
+        idNumber++; // Move to next number
+    }
+
+    return "CRI-" + year + "-" + String.format("%05d", idNumber);
+}
+
 
     
     public List<CertificateRequest> getAllRequests() {

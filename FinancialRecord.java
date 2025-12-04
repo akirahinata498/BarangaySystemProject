@@ -1,6 +1,9 @@
 package BarangayManagementSystem;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 //after fixing the system make sure to fix the codebase so it wont look like a spahetti code
@@ -65,23 +68,34 @@ FinancialRecord() {
         this.status = status;
     }
 
-    protected int newCountedRecord() {
-        int totalPayrollRecords = 0;
-        for (FinancialRecord records : financeManager.getAllRecords()) {
-            if (records instanceof PayrollRecord) {
-                totalPayrollRecords++;
-            }
-            else if (records instanceof MaintenanceRecord) {
-                System.out.println("Instantiated");
-                totalPayrollRecords++;
-            }
-            else if (records instanceof ProcurementRecord) {
-                totalPayrollRecords++;
-            }
+
+    public String certificateNumberGeneration(String startID) {
+
+    // Make a copy of the list to avoid changing the original
+    List<FinancialRecord> sorted = new LinkedList<>(financeManager.getAllRecords());
+
+    // Sort by numeric part of the ID
+    sorted.sort(Comparator.comparingInt(r ->
+        Integer.parseInt(r.getFinanceID().split("-")[2])
+    ));
+
+    int idNumber = 1;
+
+    for (FinancialRecord req : sorted) {
+        int current = Integer.parseInt(req.getFinanceID().split("-")[2]);
+
+        if (current != idNumber) {
+            // Found the first missing ID
+            break;
         }
-        totalPayrollRecords++;
-        return totalPayrollRecords;
+
+        idNumber++; // Move to next number
     }
+
+    return startID + "-" + year + "-" + String.format("%05d", idNumber);
+}
+
+    
     
 	public String TransactionDate(Scanner scan) {
 		boolean isRunning = true;

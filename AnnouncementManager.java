@@ -2,7 +2,9 @@ package BarangayManagementSystem;
 import java.util.Scanner;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 public class AnnouncementManager {
     private LinkedList<Announcement> announcementRecord = new LinkedList<>();
     private static AnnouncementManager single_instance = null;
@@ -13,7 +15,7 @@ public class AnnouncementManager {
 
         public void addAnnouncement(Scanner scan, String postedBy) {
 			scan.nextLine();
-            String announcementID = "BASD-" + year + "-" + String.format("%05d", newCountedAnnouncement()); 
+            String announcementID = certificateNumberGeneration("BASD");
             System.out.print("Enter Announcement Title: ");
             String announcementTitle = scan.nextLine();
             System.out.print("Enter Announcement Content: ");
@@ -103,14 +105,33 @@ public class AnnouncementManager {
         }
 
 
-        public int newCountedAnnouncement() {
-            int totalAnnouncements = 0;
-            for (Announcement announcement : getAllAnnouncements()) {
-             totalAnnouncements++;   
-            }
-            totalAnnouncements++;
-            return totalAnnouncements;
+
+
+		    public String certificateNumberGeneration(String startID) {
+
+    // Make a copy of the list to avoid changing the original
+    List<Announcement> sorted = new LinkedList<>(getAllAnnouncements());
+
+    // Sort by numeric part of the ID
+    sorted.sort(Comparator.comparingInt(r ->
+        Integer.parseInt(r.getAnnouncementID().split("-")[2])
+    ));
+
+    int idNumber = 1;
+
+    for (Announcement req : sorted) {
+        int current = Integer.parseInt(req.getAnnouncementID().split("-")[2]);
+
+        if (current != idNumber) {
+            // Found the first missing ID
+            break;
         }
+
+        idNumber++; // Move to next number
+    }
+
+    return startID + "-" + year + "-" + String.format("%05d", idNumber);
+}
 
 		public Announcement findAnnouncement (Scanner scan) {
 			System.out.print("Enter the Announcement ID: ");

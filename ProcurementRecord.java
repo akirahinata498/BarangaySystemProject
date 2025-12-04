@@ -23,7 +23,7 @@ public class ProcurementRecord extends FinancialRecord{
     @Override
     public void addRecord(Scanner scan) {
         scan.nextLine();
-        String financeID = "PRC-" + year + "-" + String.format("%05d", newCountedRecord());
+        String financeID = certificateNumberGeneration("PRC");
         System.out.print("Enter Item Name: ");
         String itemName = scan.nextLine();
         System.out.print("Enter Item's Purpose: ");
