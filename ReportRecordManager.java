@@ -105,9 +105,27 @@ public class ReportRecordManager {
             System.out.println("Invalid Input, Please enter a proper input");
             return;
         }
+        boolean isRunning = true;
+        int chooseStatus = 0;
+        String reportStatus = "";
+        while (isRunning) {
         System.out.print("Enter the current status for the report: ");
-        String currentStatus = scan.nextLine();
-        chosenReport.setStatus(currentStatus);
+        System.out.println("1 - In Progress");
+        System.out.println("2 - Case Solved");
+        System.out.println("3 - Police Investigation");
+        chooseStatus = scan.nextInt();
+        scan.nextLine();
+        switch (chooseStatus) {
+            case 1 ->  reportStatus = "In Progress";
+            case 2 -> reportStatus = "Case Solved";
+            case 3 -> reportStatus = "Police Investigation";
+            default -> System.out.println("Please enter a proper answer");
+            }
+            if (chooseStatus >= 1 && chooseStatus <= 3) {
+                isRunning = false;
+            }
+        }
+        chosenReport.setStatus(reportStatus);
     }
      public String ReportIDGeneration() {
 
