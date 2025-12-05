@@ -159,7 +159,7 @@ FinancialRecord() {
 	}
     public FinancialRecord findRecord(Scanner scan) {
       
-            System.out.print("Enter the Payroll ID of user that you want to edit: ");
+            System.out.print("Enter the Payroll ID of user that you want to report: ");
             String findRecord = scan.nextLine();
             for (FinancialRecord records : financeManager.getAllRecords()) {
                 if (records instanceof PayrollRecord && findRecord.equals(records.getFinanceID())) {

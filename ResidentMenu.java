@@ -10,11 +10,13 @@ public class ResidentMenu extends BaseMenu implements MenuValidation<Residents>{
     private IncidentManager incidentManager;
     private CertificateManager certificateRequest;
     private UserAnnouncementViewer userAnnouncementViewer;
+    private ReportRecordManager reportRecordManager;
     ResidentMenu() {
         this.usersManager = UsersManager.getInstance();
         incidentManager = new IncidentManager();
         this.certificateRequest = new CertificateManager();
         this.userAnnouncementViewer = new UserAnnouncementViewer();
+        this.reportRecordManager = new ReportRecordManager();
     }
     @Override
     public void displayMenu() {
@@ -26,7 +28,8 @@ public class ResidentMenu extends BaseMenu implements MenuValidation<Residents>{
         System.out.println("4 - View my Certificate Request");
         System.out.println("5 - View Barangay Announcemments");
         System.out.println("6 - Submit Incident Report (Blotter)");
-        System.out.println("7 - Logout");
+        System.out.println("7 - Transparency Record");
+        System.out.println("8 - Logout");
     }
 
     @Override
@@ -39,7 +42,8 @@ public class ResidentMenu extends BaseMenu implements MenuValidation<Residents>{
             case 4 -> certificateRequest.residentViewCertificate(userInfo.getFname(), userInfo.getMname(), userInfo.getLname());
             case 5 -> userAnnouncementViewer.viewBarangayAnnouncements(scan);
             case 6 -> incidentManager.createNewIncident(scan, userInfo.getFname(), userInfo.getLname());
-            case 7 -> {return isuserLogout(scan);}
+            case 7 -> reportRecordManager.TransparencyRecordMenu(scan, userInfo.getFname(), userInfo.getLname());
+            case 8 -> {return isuserLogout(scan);}
             default -> System.out.println("Please enter a proper input");
         }
         return true;
@@ -95,4 +99,6 @@ public class ResidentMenu extends BaseMenu implements MenuValidation<Residents>{
         }
         return false;
     }
+
+
 }

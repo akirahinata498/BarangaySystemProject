@@ -15,6 +15,7 @@ public class AdminMenu extends BaseMenu implements MenuValidation<Admin>{
     private SystemSettingsManager settingsManager = new SystemSettingsManager();
     private IncidentManager incidentManager;
     private CertificateManager certificateMananager;
+    private ReportRecordManager reportRecordManager;
     AdminMenu() {
         this.usersManager = UsersManager.getInstance();
         this.userManagement = new UserAccountManagement();
@@ -24,7 +25,7 @@ public class AdminMenu extends BaseMenu implements MenuValidation<Admin>{
         this.certificateMananager = new CertificateManager();
         this.incidentManager = new IncidentManager();
         this.announcementManager = AnnouncementManager.getInstance();
-        
+        this.reportRecordManager = new ReportRecordManager();
     }
     @Override
     public void displayMenu() {
@@ -89,13 +90,15 @@ public class AdminMenu extends BaseMenu implements MenuValidation<Admin>{
             System.out.println("1 - Payroll Record");
             System.out.println("2 - Maintenance Record");
             System.out.println("3 - Procurement Record");
-            System.out.println("4 - Exit");
+            System.out.println("4 - See Citizen Reports");
+            System.out.println("5 - Exit");
             int chooseRecprd = scan.nextInt();
             switch (chooseRecprd) {
                 case 1 -> payrollRecord.chooseActions(scan, "Payroll");
                 case 2 -> maintenanceRecord.chooseActions(scan, "Maintenance");
                 case 3 -> procurementRecord.chooseActions(scan, "Procurement");
-                case 4 -> isRunning = false;
+                case 4 -> reportRecordManager.ManageReport(scan);
+                case 5 -> isRunning = false;
                 default -> System.out.println("Invalid Input, Please enter a proper input");
             }   
         }
